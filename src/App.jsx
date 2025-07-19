@@ -1,30 +1,40 @@
 import "./App.css";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { useReducer } from "react";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import New from "./pages/New";
 import Diary from "./pages/Diary";
+import Edit from "./pages/Edit.jsx";
 import Notfound from "./pages/Notfound";
-import { getEmotionImage } from "./util/get-emotion-image.js";
-import Button from "./components/Button";
 
-// '/': 모든 일기를 조회하는 Home 페이지
-// '/new': 새로운 일기를 작성하는 New 페이지
-// '/diary': 일기 상세히 조회하는 Diary 페이지
+const mockData = [
+  {
+    id: 1,
+    createdDate: new Date().getTime().toLocaleString(),
+    emotionId: 1,
+    content: "1번 일기 내용",
+  },
+  {
+    id: 2,
+    createdDate: new Date().getTime().toLocaleString(),
+    emotionId: 2,
+    content: "2번 일기 내용",
+  },
+];
+
+function reducer(state, action) {
+  return state;
+}
 
 function App() {
-  const nav = useNavigate();
-
-  const onClickButton = () => {
-    nav("/new");
-  };
-
+  const [data, dispatch] = useReducer(reducer, mockData);
   return (
     <>
-      <Button />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/new" element={<New />} />
         <Route path="/diary/:id" element={<Diary />} />
+        <Route path="/edit/:id" element={<Edit />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
     </>
