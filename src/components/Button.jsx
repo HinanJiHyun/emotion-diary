@@ -1,4 +1,5 @@
+import "./Button.css";
 const Button = () => {
-  return <button>버튼</button>;
+  return <button className="Button">버튼</button>;
 };
 export default Button;
